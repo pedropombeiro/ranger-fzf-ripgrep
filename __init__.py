@@ -38,9 +38,9 @@ class fzf_rg_select(Command):
 
         env = os.environ.copy()
         env['FZF_DEFAULT_COMMAND'] = fzf_default_command
-        env['FZF_DEFAULT_OPTS'] = '--delimiter : --height=40% --layout=reverse --ansi --preview="{}"'.format('''
+        env['FZF_DEFAULT_OPTS'] = '--delimiter : --height=40% --layout=reverse --ansi --preview="{}" --preview-window \'~4\''.format('''
             (
-                bat --style=full --color=always --highlight-line {2} {1} ||
+                bat --style=full --force-colorization --paging=never --highlight-line {2} --line-range {2}:+$FZF_PREVIEW_LINES {1} ||
                 cat {}
             ) 2>/dev/null | head -n 100
         ''')
